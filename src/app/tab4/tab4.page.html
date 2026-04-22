@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>Privacy & Security</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showHelp()">
+        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <div class="ion-text-center" style="margin-bottom: 20px;">
+    <ion-icon name="shield-checkmark-outline" color="success" style="font-size: 5rem;"></ion-icon>
+    <h2>Mobile Data Protection</h2>
+  </div>
+
+  <!-- 隐私要求 1 -->
+  <ion-card>
+    <ion-item lines="none">
+      <ion-icon name="lock-closed-outline" slot="start" color="primary"></ion-icon>
+      <ion-card-header>
+        <ion-card-title>Data Encryption</ion-card-title>
+      </ion-card-header>
+    </ion-item>
+    <ion-card-content>
+      All data transmitted between this mobile application and the RESTful API is conducted over encrypted channels. This prevents "man-in-the-middle" attacks from intercepting sensitive inventory records.
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 隐私要求 2 -->
+  <ion-card>
+    <ion-item lines="none">
+      <ion-icon name="eye-off-outline" slot="start" color="warning"></ion-icon>
+      <ion-card-header>
+        <ion-card-title>User Privacy</ion-card-title>
+      </ion-card-header>
+    </ion-item>
+    <ion-card-content>
+      We strictly adhere to user-centered privacy techniques. The application only requests necessary permissions and does not store personal identifier information (PII) beyond what is required for inventory management.
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 隐私要求 3 -->
+  <ion-card>
+    <ion-item lines="none">
+      <ion-icon name="server-outline" slot="start" color="danger"></ion-icon>
+      <ion-card-header>
+        <ion-card-title>API Security</ion-card-title>
+      </ion-card-header>
+    </ion-item>
+    <ion-card-content>
+      Server-side validation is implemented to ensure that only authorized operations are performed. For example, critical items like 'Laptop' are protected from unauthorized deletion to maintain database integrity.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-footer class="ion-no-border ion-text-center" style="margin-top: 20px; color: gray;">
+    <p><small>PROG2005 Mobile Application Security Framework v1.0</small></p>
+  </ion-footer>
+
+</ion-content>

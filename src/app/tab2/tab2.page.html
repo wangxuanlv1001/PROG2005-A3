@@ -1,0 +1,94 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title>Add & Featured</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showHelp()">
+        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- 表单区域 -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add New Item</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      
+      <ion-item>
+        <ion-input label="Item Name*" labelPlacement="floating" type="text" [(ngModel)]="newItem.item_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Category*" labelPlacement="floating" [(ngModel)]="newItem.category">
+          <ion-select-option value="Electronics">Electronics</ion-select-option>
+          <ion-select-option value="Furniture">Furniture</ion-select-option>
+          <ion-select-option value="Clothing">Clothing</ion-select-option>
+          <ion-select-option value="Tools">Tools</ion-select-option>
+          <ion-select-option value="Miscellaneous">Miscellaneous</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Quantity*" labelPlacement="floating" type="number" [(ngModel)]="newItem.quantity"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Price ($)*" labelPlacement="floating" type="number" [(ngModel)]="newItem.price"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Supplier Name*" labelPlacement="floating" type="text" [(ngModel)]="newItem.supplier_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Stock Status*" labelPlacement="floating" [(ngModel)]="newItem.stock_status">
+          <ion-select-option value="In Stock">In Stock</ion-select-option>
+          <ion-select-option value="Low Stock">Low Stock</ion-select-option>
+          <ion-select-option value="Out of Stock">Out of Stock</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Special Note" labelPlacement="floating" type="text" [(ngModel)]="newItem.special_note"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-toggle [checked]="newItem.featured_item === 1" 
+                    (ionChange)="newItem.featured_item = $event.detail.checked ? 1 : 0">
+          Make it a Featured Item
+        </ion-toggle>
+      </ion-item>
+
+      <ion-button expand="block" style="margin-top: 15px;" (click)="addItem()">
+        Submit New Item
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 特色商品展示列表 -->
+  <ion-list style="margin-top: 20px;">
+    <ion-list-header>
+      <ion-label color="warning">
+        <h2><ion-icon name="star-outline"></ion-icon> Featured Items</h2>
+      </ion-label>
+    </ion-list-header>
+
+    <div *ngIf="featuredItems.length === 0" class="ion-text-center" style="color: gray; padding: 10px;">
+      No featured items available.
+    </div>
+
+    <ion-item *ngFor="let item of featuredItems">
+      <ion-label>
+        <h2><b>{{ item.item_name }}</b></h2>
+        <p>{{ item.category }} | ${{ item.price }}</p>
+      </ion-label>
+      <ion-badge slot="end" color="warning">Featured</ion-badge>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
