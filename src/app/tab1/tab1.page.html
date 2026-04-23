@@ -1,75 +1,17 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title>Inventory List</ion-title>
-    <!-- 作业要求的帮助按钮 -->
-    <ion-buttons slot="end">
-      <ion-button (click)="showHelp()">
-        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+  <ion-toolbar>
+    <ion-title>
+      Tab 1
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  
-  <!-- 搜索栏 -->
-  <ion-searchbar 
-    placeholder="Search by exact item name..." 
-    [(ngModel)]="searchQuery" 
-    (ionInput)="searchItem()" 
-    [debounce]="500">
-  </ion-searchbar>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 1</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <!-- 搜索结果展示区 (仅在有搜索结果时显示) -->
-  <div *ngIf="searchedItem">
-    <ion-card color="light">
-      <ion-card-header>
-        <ion-card-title>Search Result</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <h2><b>{{ searchedItem.item_name }}</b> ({{ searchedItem.category }})</h2>
-        <p>Price: ${{ searchedItem.price }}</p>
-        <p>Quantity: {{ searchedItem.quantity }}</p>
-        <!-- 使用徽章(Badge)展示库存状态，不同状态颜色不同 -->
-        <p>Status: 
-          <ion-badge [color]="searchedItem.stock_status === 'In Stock' ? 'success' : 'danger'">
-            {{ searchedItem.stock_status }}
-          </ion-badge>
-        </p>
-      </ion-card-content>
-    </ion-card>
-    <ion-button expand="block" fill="clear" (click)="clearSearch()">Clear Search</ion-button>
-  </div>
-
-  <!-- 所有商品列表区 (没搜索时显示) -->
-  <div *ngIf="!searchedItem">
-    <ion-list>
-      <ion-list-header>
-        <ion-label>All Items</ion-label>
-      </ion-list-header>
-      
-      <!-- 循环遍历所有商品 -->
-      <ion-item *ngFor="let item of items">
-        <ion-label>
-          <h2>{{ item.item_name }}</h2>
-          <p>{{ item.category }} | Supplier: {{ item.supplier_name }}</p>
-        </ion-label>
-        
-        <ion-note slot="end" color="primary" style="font-size: 1.1em; font-weight: bold;">
-          ${{ item.price }}
-        </ion-note>
-        
-        <ion-badge slot="end" 
-          [color]="item.stock_status === 'In Stock' ? 'success' : (item.stock_status === 'Low Stock' ? 'warning' : 'danger')">
-          {{ item.stock_status }}
-        </ion-badge>
-      </ion-item>
-    </ion-list>
-    
-    <!-- 数据加载中或空数据的提示 -->
-    <div *ngIf="items.length === 0" class="ion-text-center" style="margin-top: 20px; color: gray;">
-      <p>Loading items or no data available...</p>
-    </div>
-  </div>
-
+  <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>

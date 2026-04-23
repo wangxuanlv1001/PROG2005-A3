@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Privacy & Security</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showHelp()">
+        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Privacy and Security Requirements</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>This app should protect inventory data and use secure communication when interacting with the server.</p>
+      <p>User inputs should be validated to reduce invalid or unsafe data submissions.</p>
+      <p>The app should only collect data required for inventory management and should not expose unnecessary information.</p>
+      <p>Error messages should be helpful but should not reveal sensitive system details.</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
