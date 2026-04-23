@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Privacy & Security</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showHelp()">
+        <ion-icon name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="page-container">
+    <div class="ios-hero">
+      <div class="ios-hero__eyebrow">Security Overview</div>
+      <h1 class="ios-hero__title">Trust, clarity, and safer data handling</h1>
+      <p class="ios-hero__subtitle">
+        Understand how the app validates input, protects communication, and handles inventory operations responsibly.
+      </p>
+    </div>
+
+    <ion-card class="hero-card">
+      <ion-card-header>
+        <ion-card-title>Privacy & Security Requirements</ion-card-title>
+        <ion-card-subtitle>Mobile Inventory Management System</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>
+          This page explains how the application protects user input, manages inventory data,
+          and handles updates and deletions responsibly in a mobile environment.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="info-grid">
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>Input Validation</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>
+            Required fields such as item name, category, quantity, price, supplier name and stock
+            status must be validated before being submitted to the server.
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>Secure Transmission</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>
+            The application communicates with the remote server over HTTPS to help protect data
+            during transmission between the device and backend service.
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>Safe Update & Delete</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>
+            Update and delete operations should provide clear feedback and confirmation so users
+            understand when they are changing shared inventory data.
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>Least Privilege</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>
+            A mobile app should request only the permissions and access necessary for its intended
+            functionality, avoiding unnecessary exposure of sensitive data.
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>Error Handling</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>
+            Error messages should be user-friendly and should not expose confidential system or
+            database details that could increase security risks.
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>Local Data Minimisation</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>
+            The app should avoid storing unnecessary data locally and should keep only the minimum
+            information needed to support its normal operation.
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

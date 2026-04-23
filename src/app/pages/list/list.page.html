@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inventory List</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showHelp()">
+        <ion-icon name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="page-container">
+    <div class="ios-hero">
+      <div class="ios-hero__eyebrow">Inventory Center</div>
+      <h1 class="ios-hero__title">Manage your products beautifully</h1>
+      <p class="ios-hero__subtitle">
+        Browse all records, search items by name, and review your inventory with a cleaner iOS-style interface.
+      </p>
+    </div>
+
+    <div class="ios-panel">
+      <ion-searchbar
+        [(ngModel)]="searchName"
+        placeholder="Search item by name">
+      </ion-searchbar>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-button expand="block" (click)="searchItem()">Search</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button expand="block" color="medium" (click)="clearSearch()">Reload</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="loading-wrap" *ngIf="loading">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Loading inventory...</p>
+    </div>
+
+    <ion-card *ngIf="selectedItem && !loading">
+      <ion-card-header>
+        <ion-card-title>{{ selectedItem.itemName || 'Unnamed Item' }}</ion-card-title>
+        <ion-card-subtitle>{{ selectedItem.category }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p><strong>ID:</strong> {{ selectedItem.itemId }}</p>
+        <p><strong>Quantity:</strong> {{ selectedItem.quantity }}</p>
+        <p><strong>Price:</strong> {{ selectedItem.price }}</p>
+        <p><strong>Supplier:</strong> {{ selectedItem.supplierName }}</p>
+        <p><strong>Status:</strong> {{ selectedItem.stockStatus }}</p>
+        <p><strong>Featured:</strong> {{ selectedItem.featuredItem === 1 ? 'Yes' : 'No' }}</p>
+        <p><strong>Note:</strong> {{ selectedItem.specialNote || '-' }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ng-container *ngIf="!selectedItem && !loading">
+      <ion-card *ngIf="items.length === 0" class="empty-card">
+        <ion-card-content>
+          <p>No inventory items found.</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-list *ngIf="items.length > 0">
+        <ion-item *ngFor="let item of items; trackBy: trackByItemName">
+          <ion-label>
+            <h2>{{ item.itemName || 'Unnamed Item' }}</h2>
+            <p>{{ item.category }} | Qty: {{ item.quantity }} | Price: {{ item.price }}</p>
+            <p>Status: {{ item.stockStatus }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+  </div>
+</ion-content>

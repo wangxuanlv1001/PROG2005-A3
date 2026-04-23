@@ -1,0 +1,23 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="list" [routerLink]="['/tabs/list']">
+      <ion-icon name="list-outline"></ion-icon>
+      <ion-label>List</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="add" [routerLink]="['/tabs/add']">
+      <ion-icon name="add-circle-outline"></ion-icon>
+      <ion-label>Add</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="edit" [routerLink]="['/tabs/edit']">
+      <ion-icon name="create-outline"></ion-icon>
+      <ion-label>Edit</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="privacy" [routerLink]="['/tabs/privacy']">
+      <ion-icon name="shield-checkmark-outline"></ion-icon>
+      <ion-label>Privacy</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

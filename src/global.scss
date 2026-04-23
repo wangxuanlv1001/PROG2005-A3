@@ -1,0 +1,453 @@
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+:root {
+  --liquid-bg-1: #f7fbff;
+  --liquid-bg-2: #eef5ff;
+  --liquid-bg-3: #f8f7ff;
+  --liquid-bg-4: #fbfdff;
+
+  --liquid-text: #0f172a;
+  --liquid-text-soft: rgba(15, 23, 42, 0.62);
+
+  --liquid-blue: #0a84ff;
+  --liquid-blue-deep: #2563eb;
+  --liquid-violet: #7c3aed;
+  --liquid-cyan: #38bdf8;
+
+  --glass-fill-1: rgba(255, 255, 255, 0.72);
+  --glass-fill-2: rgba(255, 255, 255, 0.54);
+  --glass-fill-3: rgba(255, 255, 255, 0.32);
+  --glass-stroke: rgba(255, 255, 255, 0.86);
+  --glass-stroke-soft: rgba(255, 255, 255, 0.46);
+  --glass-shadow:
+    0 28px 60px rgba(15, 23, 42, 0.1),
+    0 12px 24px rgba(96, 165, 250, 0.08);
+  --glass-shadow-hover:
+    0 34px 72px rgba(15, 23, 42, 0.13),
+    0 16px 30px rgba(96, 165, 250, 0.11);
+
+  --glass-radius-xl: 34px;
+  --glass-radius-lg: 26px;
+  --glass-radius-md: 20px;
+  --glass-radius-sm: 16px;
+}
+
+html,
+body,
+ion-app,
+ion-content {
+  font-family: Inter, "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--liquid-text);
+}
+
+body {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(125, 211, 252, 0.2), transparent 24%),
+    radial-gradient(circle at 100% 0%, rgba(167, 139, 250, 0.16), transparent 22%),
+    radial-gradient(circle at 100% 100%, rgba(96, 165, 250, 0.16), transparent 26%),
+    radial-gradient(circle at 10% 100%, rgba(255, 255, 255, 0.5), transparent 18%),
+    linear-gradient(180deg, var(--liquid-bg-1) 0%, var(--liquid-bg-2) 46%, var(--liquid-bg-3) 78%, var(--liquid-bg-4) 100%);
+}
+
+ion-content::part(background) {
+  background:
+    radial-gradient(circle at 15% 8%, rgba(96, 165, 250, 0.16), transparent 18%),
+    radial-gradient(circle at 88% 12%, rgba(167, 139, 250, 0.12), transparent 18%),
+    radial-gradient(circle at 82% 90%, rgba(56, 189, 248, 0.12), transparent 18%),
+    linear-gradient(180deg, #f8fbff 0%, #eff5ff 52%, #faf7ff 100%);
+}
+
+/* 顶部栏：更像系统毛玻璃 */
+ion-header,
+ion-toolbar {
+  --background: rgba(255, 255, 255, 0.42);
+  --border-color: transparent;
+  backdrop-filter: blur(28px) saturate(185%);
+  -webkit-backdrop-filter: blur(28px) saturate(185%);
+}
+
+ion-toolbar {
+  --min-height: 68px;
+  position: relative;
+  box-shadow:
+    inset 0 -1px 0 rgba(255, 255, 255, 0.28),
+    0 5px 18px rgba(15, 23, 42, 0.035);
+  overflow: hidden;
+}
+
+ion-toolbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.04)),
+    radial-gradient(circle at 18% -10%, rgba(255, 255, 255, 0.7), transparent 26%);
+}
+
+ion-toolbar::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+ion-title {
+  font-size: 1.06rem;
+  font-weight: 840;
+  letter-spacing: -0.028em;
+  color: var(--liquid-text);
+}
+
+/* 通用液态玻璃外观 */
+ion-card,
+.ios-panel,
+.ios-hero,
+.glass-surface {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--glass-radius-xl);
+  border: 1px solid var(--glass-stroke);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.56) 0%, rgba(255, 255, 255, 0.34) 100%),
+    rgba(255, 255, 255, 0.36);
+  backdrop-filter: blur(34px) saturate(190%);
+  -webkit-backdrop-filter: blur(34px) saturate(190%);
+  box-shadow: var(--glass-shadow);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease;
+}
+
+ion-card::before,
+.ios-panel::before,
+.ios-hero::before,
+.glass-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.02)),
+    radial-gradient(circle at 16% 0%, rgba(255, 255, 255, 0.68), transparent 24%);
+}
+
+ion-card::after,
+.ios-panel::after,
+.ios-hero::after,
+.glass-surface::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 顶部门头更液态 */
+.ios-hero {
+  margin: 14px 16px 18px;
+  padding: 24px 22px 22px;
+}
+
+.ios-hero::before {
+  background:
+    radial-gradient(circle at 86% 8%, rgba(96, 165, 250, 0.28), transparent 18%),
+    radial-gradient(circle at 10% 100%, rgba(167, 139, 250, 0.18), transparent 20%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.02));
+}
+
+.ios-hero__eyebrow {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.26)),
+    rgba(255, 255, 255, 0.26);
+  color: #0a84ff;
+  font-size: 0.78rem;
+  font-weight: 820;
+  letter-spacing: 0.01em;
+  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.ios-hero__title {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 8px;
+  font-size: 1.56rem;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  font-weight: 870;
+  color: #0f172a;
+}
+
+.ios-hero__subtitle {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 660px;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+/* 内容面板 */
+.ios-panel {
+  margin: 0 16px 18px;
+  padding: 14px;
+}
+
+/* 按钮 */
+ion-button {
+  --border-radius: 18px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  font-weight: 820;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
+}
+
+ion-button[color="primary"],
+ion-button:not([color]) {
+  --background: linear-gradient(180deg, rgba(58, 160, 255, 0.98), rgba(10, 132, 255, 0.98));
+  --color: #ffffff;
+  --box-shadow:
+    0 14px 28px rgba(10, 132, 255, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+ion-button[color="medium"] {
+  --background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.38));
+  --color: #334155;
+  --box-shadow:
+    0 12px 22px rgba(15, 23, 42, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+ion-button[color="danger"] {
+  --background: linear-gradient(180deg, rgba(255, 107, 107, 0.98), rgba(239, 68, 68, 0.98));
+  --box-shadow:
+    0 14px 28px rgba(239, 68, 68, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26);
+}
+
+/* 输入区域 */
+ion-list {
+  background: transparent;
+}
+
+ion-item {
+  --background: rgba(255, 255, 255, 0.44);
+  --border-color: rgba(255, 255, 255, 0.34);
+  --inner-border-width: 0 0 1px 0;
+  --highlight-color-focused: var(--liquid-blue);
+  --padding-start: 14px;
+  --inner-padding-end: 12px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.26)),
+    rgba(255, 255, 255, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.44),
+    0 8px 18px rgba(15, 23, 42, 0.035);
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+ion-input,
+ion-select,
+ion-textarea,
+ion-searchbar {
+  --color: var(--liquid-text);
+}
+
+ion-searchbar {
+  --background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.34));
+  --border-radius: 22px;
+  --box-shadow:
+    0 12px 24px rgba(15, 23, 42, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  padding-left: 0;
+  padding-right: 0;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(28px) saturate(185%);
+  -webkit-backdrop-filter: blur(28px) saturate(185%);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+ion-label {
+  color: var(--liquid-text);
+}
+
+ion-label[position="stacked"] {
+  margin-bottom: 8px !important;
+  font-weight: 700;
+  color: #334155 !important;
+}
+
+ion-note {
+  display: block;
+  padding: 2px 12px 10px;
+  font-size: 0.82rem;
+}
+
+ion-note[color="danger"] {
+  color: #e11d48 !important;
+  font-weight: 700;
+}
+
+ion-toggle {
+  --handle-background: #ffffff;
+  --handle-background-checked: #ffffff;
+  --track-background: rgba(148, 163, 184, 0.28);
+  --track-background-checked: linear-gradient(180deg, #3aa0ff 0%, #0a84ff 100%);
+}
+
+ion-card-title {
+  font-size: 1.06rem;
+  font-weight: 820;
+  letter-spacing: -0.02em;
+  color: var(--liquid-text);
+}
+
+ion-card-subtitle {
+  color: var(--liquid-text-soft);
+  font-weight: 650;
+}
+
+ion-spinner {
+  color: var(--liquid-blue);
+}
+
+/* Hover */
+@media (hover: hover) and (pointer: fine) {
+  ion-button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.025);
+  }
+
+  ion-searchbar:hover {
+    transform: translateY(-2px);
+    --box-shadow:
+      0 16px 32px rgba(15, 23, 42, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.44);
+  }
+
+  ion-card:hover,
+  .ios-panel:hover,
+  .ios-hero:hover,
+  .glass-surface:hover {
+    transform: translateY(-7px);
+    box-shadow: var(--glass-shadow-hover);
+    border-color: rgba(255, 255, 255, 0.98);
+  }
+
+  ion-item:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      0 16px 28px rgba(15, 23, 42, 0.07),
+      0 8px 16px rgba(96, 165, 250, 0.06);
+    border-color: rgba(255, 255, 255, 0.82);
+    --background: rgba(255, 255, 255, 0.58);
+  }
+}
+
+/* Help 弹窗 */
+.glass-help-alert {
+  --backdrop-opacity: 0.36;
+}
+
+.glass-help-alert .alert-wrapper {
+  border-radius: 32px !important;
+  background:
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.16), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(167, 139, 250, 0.12), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.34)),
+    rgba(255, 255, 255, 0.34) !important;
+  backdrop-filter: blur(34px) saturate(195%);
+  -webkit-backdrop-filter: blur(34px) saturate(195%);
+  box-shadow:
+    0 30px 60px rgba(15, 23, 42, 0.16),
+    0 14px 28px rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  overflow: hidden;
+}
+
+.glass-help-alert .alert-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.03)),
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.74), transparent 24%);
+}
+
+.glass-help-alert .alert-title {
+  font-size: 1.08rem !important;
+  font-weight: 850 !important;
+  color: #0f172a !important;
+}
+
+.glass-help-alert .alert-message {
+  color: #475569 !important;
+  line-height: 1.72;
+  font-size: 0.95rem;
+}
+
+.glass-help-alert .alert-button {
+  border-radius: 16px !important;
+  min-height: 44px;
+  font-weight: 820 !important;
+  color: #0a84ff !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0.22)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .glass-help-alert .alert-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.28)) !important;
+  }
+}

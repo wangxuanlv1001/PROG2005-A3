@@ -1,0 +1,119 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Add Item</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showHelp()">
+        <ion-icon name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="page-container">
+    <div class="ios-hero">
+      <div class="ios-hero__eyebrow">Create Item</div>
+      <h1 class="ios-hero__title">Add inventory with clarity</h1>
+      <p class="ios-hero__subtitle">
+        Create a new item record, validate fields clearly, and highlight featured products in a more premium layout.
+      </p>
+    </div>
+
+    <div class="ios-panel ios-form-panel">
+      <form [formGroup]="itemForm" (ngSubmit)="submitForm()">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Item Name *</ion-label>
+            <ion-input formControlName="itemName"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('itemName')">
+            Item name is required.
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="stacked">Category *</ion-label>
+            <ion-select formControlName="category" interface="popover">
+              <ion-select-option *ngFor="let category of categories" [value]="category">
+                {{ category }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('category')">
+            Category is required.
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="stacked">Quantity *</ion-label>
+            <ion-input type="number" formControlName="quantity"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('quantity')">
+            Quantity must be 0 or greater.
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="stacked">Price *</ion-label>
+            <ion-input type="number" formControlName="price"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('price')">
+            Price must be 0 or greater.
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="stacked">Supplier Name *</ion-label>
+            <ion-input formControlName="supplierName"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('supplierName')">
+            Supplier name is required.
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="stacked">Stock Status *</ion-label>
+            <ion-select formControlName="stockStatus" interface="popover">
+              <ion-select-option *ngFor="let status of stockStatuses" [value]="status">
+                {{ status }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('stockStatus')">
+            Stock status is required.
+          </ion-note>
+
+          <ion-item>
+            <ion-label>Featured Item</ion-label>
+            <ion-toggle formControlName="featuredToggle"></ion-toggle>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Special Note</ion-label>
+            <ion-textarea formControlName="specialNote" rows="4"></ion-textarea>
+          </ion-item>
+        </ion-list>
+
+        <ion-button expand="block" type="submit" [disabled]="submitting" class="submit-btn">
+          {{ submitting ? 'Submitting...' : 'Add Item' }}
+        </ion-button>
+      </form>
+    </div>
+
+    <ion-card class="featured-card">
+      <ion-card-header>
+        <ion-card-title>Featured Items</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list *ngIf="featuredItems.length > 0; else noFeatured">
+          <ion-item *ngFor="let item of featuredItems">
+            <ion-label>
+              <h2>{{ item.itemName }}</h2>
+              <p>{{ item.category }} | Qty: {{ item.quantity }} | Price: {{ item.price }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ng-template #noFeatured>
+          <p>No featured items found.</p>
+        </ng-template>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

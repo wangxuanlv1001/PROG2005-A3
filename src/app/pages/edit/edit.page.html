@@ -1,0 +1,123 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Update / Delete</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showHelp()">
+        <ion-icon name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="page-container">
+    <div class="ios-hero">
+      <div class="ios-hero__eyebrow">Update Item</div>
+      <h1 class="ios-hero__title">Refine every detail smoothly</h1>
+      <p class="ios-hero__subtitle">
+        Search by product name, update the item information, and manage records with a more polished editing experience.
+      </p>
+    </div>
+
+    <div class="ios-panel ios-form-panel">
+      <ion-item>
+        <ion-label position="stacked">Search Item By Name</ion-label>
+        <ion-input [(ngModel)]="searchName"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" class="top-btn" [disabled]="processing" (click)="searchItem()">
+        {{ processing && !itemLoaded ? 'Loading...' : 'Load Item' }}
+      </ion-button>
+
+      <form [formGroup]="itemForm" *ngIf="itemLoaded">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Item ID</ion-label>
+            <ion-input formControlName="itemId" readonly></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Item Name *</ion-label>
+            <ion-input formControlName="itemName"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('itemName')">
+            Item name is required.
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="stacked">Category *</ion-label>
+            <ion-select formControlName="category" interface="popover">
+              <ion-select-option *ngFor="let category of categories" [value]="category">
+                {{ category }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('category')">
+            Category is required.
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="stacked">Quantity *</ion-label>
+            <ion-input type="number" formControlName="quantity"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('quantity')">
+            Quantity must be 0 or greater.
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="stacked">Price *</ion-label>
+            <ion-input type="number" formControlName="price"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('price')">
+            Price must be 0 or greater.
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="stacked">Supplier Name *</ion-label>
+            <ion-input formControlName="supplierName"></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('supplierName')">
+            Supplier name is required.
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="stacked">Stock Status *</ion-label>
+            <ion-select formControlName="stockStatus" interface="popover">
+              <ion-select-option *ngFor="let status of stockStatuses" [value]="status">
+                {{ status }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-note color="danger" *ngIf="isInvalid('stockStatus')">
+            Stock status is required.
+          </ion-note>
+
+          <ion-item>
+            <ion-label>Featured Item</ion-label>
+            <ion-toggle formControlName="featuredToggle"></ion-toggle>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Special Note</ion-label>
+            <ion-textarea formControlName="specialNote" rows="4"></ion-textarea>
+          </ion-item>
+        </ion-list>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="block" color="primary" [disabled]="processing" (click)="updateItem()">
+                Update
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" color="danger" [disabled]="processing" (click)="deleteItem()">
+                Delete
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </div>
+  </div>
+</ion-content>
